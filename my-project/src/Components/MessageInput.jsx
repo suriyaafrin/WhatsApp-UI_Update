@@ -4,7 +4,7 @@ const MessageInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
   return (
     <div className="p-5 bg-gray-200 border-t border-gray-200">
       <div className="flex items-center gap-3">
-        {/* Icons - Left Side */}
+        
         <div className="flex items-center gap-1 text-gray-500">
           <button
             className="p-3 hover:bg-gray-100 hover:text-gray-700 rounded-full transition-all"
@@ -26,7 +26,7 @@ const MessageInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
           </button>
         </div>
 
-        {/* Input Box */}
+  
         <div className="flex-1 flex items-center bg-gray-100 rounded-full px-6 py-2 border border-gray-200">
           <input
             type="text"
@@ -38,7 +38,6 @@ const MessageInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
           />
         </div>
 
-        {/* Send Button */}
         <button
           onClick={handleSendMessage}
           className="bg-green-600 hover:bg-green-700 text-white w-11 h-11 rounded-full flex items-center justify-center text-2xl active:scale-95 transition-all shadow-md"

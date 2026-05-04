@@ -29,13 +29,21 @@ const ChatInbox = () => {
         minute: "2-digit",
       }),
     };
+     const messageToReceive = {
+      sender: them,
+      text: newMessage.trim(),
+      time: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    };
 
     setChats((prevChats) =>
       prevChats.map((chat) =>
         chat.id === selectedChat.id
           ? {
               ...chat,
-              messages: [...chat.messages, messageToSend],
+              messages: [...chat.messages, messageToSend,messageToReceive],
               lastMessage: newMessage.trim(),
             }
           : chat

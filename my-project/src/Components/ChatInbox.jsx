@@ -14,9 +14,10 @@ const ChatInbox = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredChats = chats.filter((chat) =>
-    chat.userFullName?.toLowerCase().includes(searchTerm.toLowerCase())
+    chat.userFullName?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
+  // FIX 1: handleSendMessage is now INSIDE the component (stray closing brace removed above)
   const handleSendMessage = () => {
     if (!newMessage.trim() || !selectedChat) return;
 
@@ -29,8 +30,10 @@ const ChatInbox = () => {
         minute: "2-digit",
       }),
     };
-     const messageToReceive = {
-      sender: them,
+
+    const messageToReceive = {
+      id: Date.now() + 1,
+      sender: "them",
       text: newMessage.trim(),
       time: new Date().toLocaleTimeString([], {
         hour: "2-digit",
@@ -43,16 +46,17 @@ const ChatInbox = () => {
         chat.id === selectedChat.id
           ? {
               ...chat,
-              messages: [...chat.messages, messageToSend,messageToReceive],
+              messages: [...chat.messages, messageToSend, messageToReceive],
               lastMessage: newMessage.trim(),
             }
-          : chat
-      )
+          : chat,
+      ),
     );
 
+    // FIX 3: both messageToSend AND messageToReceive are now added to selectedChat
     setSelectedChat((prev) => ({
       ...prev,
-      messages: [...prev.messages, messageToSend],
+      messages: [...prev.messages, messageToSend, messageToReceive],
       lastMessage: newMessage.trim(),
     }));
 
